@@ -15,8 +15,7 @@ services:
       - APP_SETTINGS=src.config.DevelopmentConfig
       - DATABASE_URL=postgresql://postgres:postgres@api-db:5432/api_dev
       - DATABASE_TEST_URL=postgresql://postgres:postgres@api-db:5432/api_test
-    depends_on:
-      - api-db
+
 
   client:
     stdin_open: true
