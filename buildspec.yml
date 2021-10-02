@@ -11,7 +11,6 @@ phases:
     commands:
       - echo logging in to ecr...
       - >
-        aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 774997878975.dkr.ecr.us-east-2.amazonaws.com
         aws ecr get-login-password --region $AWS_REGION \
           | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
       - |
