@@ -7,12 +7,6 @@ env:
     REACT_APP_API_SERVICE_URL: "http://ec2-3-143-3-93.us-east-2.compute.amazonaws.com"
 
 phases:
-  install:
-    runtime-versions:
-        docker: 18     
-    commands: 
-      - nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://127.0.0.1:2375 --storage-driver=overlay2&
-      - timeout 15 sh -c "until docker info; do echo .; sleep 1;
   pre_build:
     commands:
       - echo logging in to ecr.....
