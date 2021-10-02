@@ -10,7 +10,7 @@ phases:
   pre_build:
     commands:
       - echo logging in to ecr.....
-      - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 774997878975.dkr.ecr.us-east-2.amazonaws.com
+      - docker login -u AWS -p $(aws ecr get-login-password --region us-east-2) 774997878975.dkr.ecr.us-east-2.amazonaws.com
       - |
         if expr "$CODEBUILD_WEBHOOK_TRIGGER" == "branch/master" >/dev/null  && expr "$CODEBUILD_WEBHOOK_HEAD_REF" == "refs/heads/master" >/dev/null; then
           DOCKER_TAG=prod
