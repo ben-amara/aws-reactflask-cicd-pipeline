@@ -30,7 +30,7 @@ deploy_cluster() {
   cluster="flask-react-AutoEcom"
 
   # users
-  service="flask-react-users-service"
+  service="flask-react-back-ae"
   template="ecs_users_taskdefinition.json"
   task_template=$(cat "ecs/$template")
   task_def=$(printf "$task_template" $AWS_ACCOUNT_ID $AWS_RDS_URI $PRODUCTION_SECRET_KEY)
@@ -39,7 +39,7 @@ deploy_cluster() {
   update_service
 
   # client
-  service="flask-react-client-service"
+  service="flask-react-front-ae"
   template="ecs_client_taskdefinition.json"
   task_template=$(cat "ecs/$template")
   task_def=$(printf "$task_template" $AWS_ACCOUNT_ID)
