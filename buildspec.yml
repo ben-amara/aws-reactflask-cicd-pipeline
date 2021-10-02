@@ -2,14 +2,16 @@ version: 0.2
 
 env:
   variables:
-    AWS_REGION: "us-west-1"
-    REACT_APP_API_SERVICE_URL: "http://flask-react-alb-1132421372.us-west-1.elb.amazonaws.com"
+    AWS_REGION: "us-east-2"
+    AWS_ACCOUNT_ID: "774997878975"
+    REACT_APP_API_SERVICE_URL: "http://ec2-3-143-3-93.us-east-2.compute.amazonaws.com"
 
 phases:
   pre_build:
     commands:
       - echo logging in to ecr...
       - >
+        aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 774997878975.dkr.ecr.us-east-2.amazonaws.com
         aws ecr get-login-password --region $AWS_REGION \
           | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
       - |
