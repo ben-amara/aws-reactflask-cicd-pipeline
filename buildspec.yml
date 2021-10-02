@@ -3,14 +3,14 @@ version: 0.2
 env:
   variables:
     AWS_REGION: "us-east-2"
-    AWS_ACCOUNT_ID: "774997878975"
+    #AWS_ACCOUNT_ID: "774997878975"
     REACT_APP_API_SERVICE_URL: "http://ec2-3-143-3-93.us-east-2.compute.amazonaws.com"
 
 phases:
   pre_build:
     commands:
       - echo logging in to ecr.....
-      - docker login -u AWS -p $(aws ecr get-login-password --region us-east-2) 774997878975.dkr.ecr.us-east-2.amazonaws.com
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
       - |
         if expr "$CODEBUILD_WEBHOOK_TRIGGER" == "branch/master" >/dev/null  && expr "$CODEBUILD_WEBHOOK_HEAD_REF" == "refs/heads/master" >/dev/null; then
           DOCKER_TAG=prod
