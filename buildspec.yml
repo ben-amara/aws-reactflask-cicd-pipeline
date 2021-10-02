@@ -10,8 +10,15 @@ phases:
   pre_build:
     commands:
       - echo logging in to ecr.....
+      - password="$( aws ecr get-authorization-token \
+                      --region "${AWS_REGION}" \
+                      --output text \
+                      --query 'authorizationData[].authorizationToken' \
+                      | base64 -d \
+                      | cut -d: -f2 \
+              )"
       - >
-        aws ecr get-login-password --region $AWS_REGION \
+        echo "******* $password *********" \
           | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
       - |
         if expr "$CODEBUILD_WEBHOOK_TRIGGER" == "branch/master" >/dev/null  && expr "$CODEBUILD_WEBHOOK_HEAD_REF" == "refs/heads/master" >/dev/null; then
