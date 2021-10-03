@@ -59,6 +59,10 @@ phases:
   post_build:
     commands:
     - echo pushing prod images to ecr...
+      - echo logging in to ecr.....
+      - >
+        aws ecr get-login-password --region $AWS_REGION \
+          | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com    
     - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/flask-react-autoecom-registry
     - chmod +x ./deploy.sh
     - bash deploy.sh
