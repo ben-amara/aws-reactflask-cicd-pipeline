@@ -20,9 +20,9 @@ phases:
           DOCKER_TAG=${CODEBUILD_RESOLVED_SOURCE_VERSION}
         fi
       - echo "Docker tag:" $DOCKER_TAG
-      - docker pull $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/flask-react-autoecom-registry || true
-      - docker pull $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/flask-react-autoecom-registry || true
-      - docker pull $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/flask-react-autoecom-registry || true
+      # - docker pull $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/flask-react-autoecom-registry || true
+      # - docker pull $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/flask-react-autoecom-registry || true
+      # - docker pull $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/flask-react-autoecom-registry || true
   build:
     commands:
       # - echo building and testing dev images...
