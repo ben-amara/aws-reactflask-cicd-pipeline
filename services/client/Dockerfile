@@ -1,6 +1,11 @@
 # pull official base image
-FROM node:15.1.0-alpine3.12
+FROM node:16-alpine
 
+RUN apk --no-cache add --virtual native-deps \
+  g++ gcc libgcc libstdc++ linux-headers make python && \
+  npm install --quiet node-gyp -g &&\
+  npm install --quiet && \
+  apk del native-deps
 # set working directory
 WORKDIR /usr/src/app
 
@@ -10,7 +15,6 @@ ENV PATH /usr/src/app/node_modules/.bin:$PATH
 # install and cache app dependencies
 COPY package.json .
 COPY package-lock.json .
-
 RUN npm ci
 RUN npm install react-scripts@4.0.3 -g --silent
 
