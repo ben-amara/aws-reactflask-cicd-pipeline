@@ -1,5 +1,5 @@
 # pull official base image
-FROM node:16-alpine
+FROM node:15.1.0-alpine3.12
 
 # set working directory
 WORKDIR /usr/src/app
@@ -10,7 +10,7 @@ ENV PATH /usr/src/app/node_modules/.bin:$PATH
 # install and cache app dependencies
 COPY package.json .
 COPY package-lock.json .
-RUN npm install --global windows-build-tools
+
 RUN npm ci
 RUN npm install react-scripts@4.0.3 -g --silent
 
