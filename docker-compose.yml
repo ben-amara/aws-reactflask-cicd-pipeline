@@ -12,10 +12,9 @@ services:
       - 5004:5000
     environment:
       - FLASK_ENV=development
-      - APP_SETTINGS=src.config.DevelopmentConfig
-      - DATABASE_URL=postgresql://postgres:postgres@api-db:5432/api_dev
-      - DATABASE_TEST_URL=postgresql://postgres:postgres@api-db:5432/api_test
-
+      # - APP_SETTINGS=src.config.DevelopmentConfig
+      # - DATABASE_URL=postgresql://postgres:postgres@api-db:5432/api_dev
+      # - DATABASE_TEST_URL=postgresql://postgres:postgres@api-db:5432/api_test
 
   client:
     stdin_open: true
