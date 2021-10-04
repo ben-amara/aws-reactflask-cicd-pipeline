@@ -37,7 +37,7 @@ phases:
       - echo building prod images...
       - >
         docker build \
-          --cache-from $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/flask-react-autoecom-registry: \
+          --cache-from $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/flask-react-autoecom-registry:front \
           -f services/users/Dockerfile \
           -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/flask-react-autoecom-registry \
           ./services/users
@@ -52,7 +52,7 @@ phases:
       #     ./services/client
       - >
         docker build \
-          --cache-from $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/flask-react-autoecom-registry \
+          --cache-from $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/flask-react-autoecom-registry:back \
           -f services/client/Dockerfile \
           -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/flask-react-autoecom-registry \
           ./services/client
