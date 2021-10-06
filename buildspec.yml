@@ -63,3 +63,4 @@ phases:
     - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/flask-react-autoecom-registry:back
     - chmod +x ./deploy.sh
     - bash deploy.sh
+ 
